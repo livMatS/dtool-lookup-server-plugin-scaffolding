@@ -13,13 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
-    - name: Install Python
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: Install requirements
       run: |
-        sudo apt-get update -qy
-        sudo apt-get install -y python3-dev python3-pip
-        sudo pip3 install --upgrade setuptools wheel
+        pip install --upgrade setuptools wheel
+        pip install git+https://github.com/jic-dtool/dtool-lookup-server.git@master
 
     - name: Package dist
       run: |
