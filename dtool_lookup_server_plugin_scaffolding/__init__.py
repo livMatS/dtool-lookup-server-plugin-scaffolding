@@ -9,10 +9,18 @@ from flask_jwt_extended import (
 )
 from dtool_lookup_server import AuthenticationError
 
+try:
+    from importlib.metadata import version, PackageNotFoundError
+except ModuleNotFoundError:
+    from importlib_metadata import version, PackageNotFoundError
+
+try:
+    __version__ = version(__name__)
+except PackageNotFoundError:
+    # package is not installed
+   pass
+
 from .utils import config_to_dict
-
-__version__ = '0.1.1'
-
 
 scaffolding_bp = Blueprint("scaffolding", __name__, url_prefix="/scaffolding")
 

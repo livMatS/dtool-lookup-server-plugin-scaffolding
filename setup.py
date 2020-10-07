@@ -1,8 +1,8 @@
 from setuptools import setup
-from dtool_lookup_server_plugin_scaffolding import __version__
+from setuptools_scm import get_version
+version = get_version(root='.', relative_to=__file__)
 
 url = "https://github.com/IMTEK-Simulation/dtool-lookup-server-plugin-scaffolding"
-version = __version__
 readme = open('README.rst').read()
 
 setup(
@@ -12,13 +12,14 @@ setup(
     long_description=readme,
     author="Johannes Hörmann",
     author_email="johannes.hoermann@imtek.uni-freiburg.de",
-    version=version,
+    use_scm_version=True,
     url=url,
     entry_points={
         'dtool_lookup_server.blueprints': [
             'dtool_lookup_server_plugin_scaffolding=dtool_lookup_server_plugin_scaffolding:scaffolding_bp',
         ],
     },
+    setup_requires=['setuptools_scm'],
     install_requires=[
         "dtool-lookup-server",
     ],
