@@ -1,7 +1,8 @@
 from setuptools import setup
+from dtool_lookup_server_plugin_scaffolding import __version__
 
 url = "https://github.com/IMTEK-Simulation/dtool-lookup-server-plugin-scaffolding"
-version = "0.1.0"
+version = __version__
 readme = open('README.rst').read()
 
 setup(
