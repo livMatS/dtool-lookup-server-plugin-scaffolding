@@ -18,11 +18,12 @@ try:
     __version__ = version(__name__)
 except PackageNotFoundError:
     # package is not installed
-   pass
+    pass
 
 from .utils import config_to_dict
 
 scaffolding_bp = Blueprint("scaffolding", __name__, url_prefix="/scaffolding")
+
 
 @scaffolding_bp.route("/config", methods=["GET"])
 @jwt_required
