@@ -26,7 +26,7 @@ scaffolding_bp = Blueprint("scaffolding", __name__, url_prefix="/scaffolding")
 
 
 @scaffolding_bp.route("/config", methods=["GET"])
-@jwt_required
+@jwt_required()
 def plugin_config():
     """Return the JSON-serialized plugin configuration."""
     username = get_jwt_identity()
