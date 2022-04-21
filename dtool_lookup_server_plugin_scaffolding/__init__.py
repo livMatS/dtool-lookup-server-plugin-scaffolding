@@ -9,6 +9,7 @@ from flask_jwt_extended import (
 from flask_smorest import Blueprint
 
 from dtool_lookup_server import AuthenticationError
+from dtool_lookup_server.schemas import ConfigSchema
 
 try:
     from importlib.metadata import version, PackageNotFoundError
@@ -27,6 +28,7 @@ scaffolding_bp = Blueprint("scaffolding", __name__, url_prefix="/scaffolding")
 
 
 @scaffolding_bp.route("/config", methods=["GET"])
+@scaffolding_bp.response(200, ConfigSchema)
 @jwt_required()
 def plugin_config():
     """Return the JSON-serialized plugin configuration."""
