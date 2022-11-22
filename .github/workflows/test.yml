@@ -9,8 +9,9 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         python-version: ['3.7', '3.8', '3.9', '3.10']
@@ -38,12 +39,12 @@ jobs:
         # pip install --upgrade setuptools wheel setuptools-scm[toml] importlib-metadata
         pip install flake8 pytest pytest-cov
 
-     - name: Install server
-       run: |
-        pip install dtool-lookup-server==${{ matrix.dtool-lookup-server-version }}
-        # refactor-specific: this should move into the strategy matrix once released
-        # pip install git+https://github.com/jic-dtool/dtool-lookup-server.git@mongo-refactor
-        # pip install git+https://github.com/jic-dtool/dtool-lookup-server-retrieve-plugin-mongo.git@main
+    - name: Install server
+      run: |
+       pip install dtool-lookup-server==${{ matrix.dtool-lookup-server-version }}
+       # refactor-specific: this should move into the strategy matrix once released
+       # pip install git+https://github.com/jic-dtool/dtool-lookup-server.git@mongo-refactor
+       # pip install git+https://github.com/jic-dtool/dtool-lookup-server-retrieve-plugin-mongo.git@main
 
     - name: Install own requirements
       run: |
