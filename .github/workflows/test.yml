@@ -16,7 +16,7 @@ jobs:
       matrix:
         python-version: ['3.7', '3.8', '3.9', '3.10']
         mongodb-version: ['4.2', '4.4', '5.0', '6.0']
-        dtool-lookup-server-version: ['0.17.2']
+        # dtool-lookup-server-version: ['0.17.2']  # use current refactor
 
     steps:
     - name: Git checkout
@@ -41,10 +41,11 @@ jobs:
 
     - name: Install server
       run: |
-       pip install dtool-lookup-server==${{ matrix.dtool-lookup-server-version }}
+       # pip install dtool-lookup-server==${{ matrix.dtool-lookup-server-version }}
        # refactor-specific: this should move into the strategy matrix once released
-       # pip install git+https://github.com/jic-dtool/dtool-lookup-server.git@mongo-refactor
-       # pip install git+https://github.com/jic-dtool/dtool-lookup-server-retrieve-plugin-mongo.git@main
+       pip install git+https://github.com/jotelha/dtool-lookup-server.git@master
+       pip install git+https://github.com/jotelha/dtool-lookup-server-search-plugin-mongo.git@main
+       pip install git+https://github.com/jotelha/dtool-lookup-server-retrieve-plugin-mongo.git@main
 
     - name: Install own requirements
       run: |
